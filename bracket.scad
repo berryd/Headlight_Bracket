@@ -1,7 +1,7 @@
 //printable=true;
 
 //otherside=true;
-$fn=90;
+$fn=30;
 
 /*
 bed=140;
@@ -14,6 +14,7 @@ bracket_thick = 5;
 washer = 0;
 
 hole_count = 4;
+bracket_hole_count = 3;
 
 //####### 43 MM #######
 /*
@@ -189,7 +190,9 @@ module mount_whole() {
     module holes() {
         translate([length*(130/length)-21.5+tweak,0,fork_out_dia/2+1.5])
         rotate([0,-90+tab_r,0]) {
-            for ( i = [-20 : 20 : 20] ) {
+            for ( i=[-(fork_end_w/2-fork_end_w/(2*bracket_hole_count)) : 
+                     fork_end_w/bracket_hole_count : 
+                     fork_end_w/2-fork_end_w/(2*bracket_hole_count)]) {
                 translate([fork_out_dia/2+bracket_thick+hole,i,0])
                     cylinder(r1=hole/2,r2=hole/2,50,center=true);
                 }
@@ -197,7 +200,9 @@ module mount_whole() {
 
         translate([length*(130/length)-21.5+tweak,0,fork_out_dia/2+1.5])
         rotate([0,180+(-90+tab_r),0]) {
-            for ( i = [-20 : 20 : 20] ) {
+            for ( i=[-(fork_end_w/2-fork_end_w/(2*bracket_hole_count)) : 
+                     fork_end_w/bracket_hole_count : 
+                     fork_end_w/2-fork_end_w/(2*bracket_hole_count)]) {
                 translate([fork_out_dia/2+bracket_thick+hole,i,0]) {
                     cylinder(r1=hole/2,r2=hole/2,50,center=true);
                     translate([0,0,10]) cylinder(r1=head/2,r2=head/2,20,center=true);
@@ -210,7 +215,9 @@ module mount_whole() {
     module boss() {
         translate([length*(130/length)-21.5+tweak,0,fork_out_dia/2+1.5])
         rotate([0,180+(-90+tab_r),0]) {
-            for ( i = [-20 : 20 : 20] ) {
+            for ( i=[-(fork_end_w/2-fork_end_w/(2*bracket_hole_count)) : 
+                     fork_end_w/bracket_hole_count : 
+                     fork_end_w/2-fork_end_w/(2*bracket_hole_count)]) {
                 translate([fork_out_dia/2+bracket_thick+hole,i,0]) {
                     difference() {
                         translate([0,0,-5-washer]) cylinder(r1=head/2,r2=head/2,20,center=true);
